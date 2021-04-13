@@ -63,7 +63,13 @@ namespace Mutti
             string result = e.Result.Text;
             int resp = Array.IndexOf(grammarFile, result);
 
-            if(responseFile[resp].IndexOf('+') == 0)
+            if (result.Contains("hello"))
+            {
+                Say("hi my name is mutti, how may I help you");
+            }
+
+
+            if (responseFile[resp].IndexOf('+') == 0)
             {
                 List<string> responses = responseFile[resp].Replace('+', ' ').Split('/').Reverse().ToList();
                 Random r = new Random();
@@ -78,13 +84,15 @@ namespace Mutti
                     if (result.Contains("google"))
                     {
                         Process.Start("Http://www.google.com");
+                        Say("opening google");
                     }
 
-                    else if (result.Contains("teams"))
+                    else if (result.Contains("moodle"))
                     {
-                        Process.Start("C:\\Users\\crazy\\AppData\\Local\\Microsoft\\Teams\\Teams.exe");
-                    }
 
+                        Process.Start("https://moodle.techcollege.dk/my/");
+                        Say("opening moodle");
+                    }
                     else if (result.Contains("time"))
                     {
                         Say(DateTime.Now.ToString(@"hh\:mm tt"));
